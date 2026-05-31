@@ -1,0 +1,8 @@
+{
+  "name": "Brooksville Moose Lodge CMS",
+  "description": "A comprehensive Progressive Web App and custom CMS for Brooksville Moose Lodge 1676, featuring an events calendar, news posts, photo gallery, officers, hall rental estimator, and administrative back-end with WordPress migration instructions.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
