@@ -19,7 +19,17 @@ import InteractiveMap from "./components/InteractiveMap.js";
 
 export default function App() {
   const [activeTab, setActiveTab] = useState<string>("home");
-  const [cmsData, setCmsData] = useState<CMSData>(INITIAL_CMS_DATA);
+  const [cmsData, setCmsData] = useState<CMSData>(() => {
+    const cached = localStorage.getItem("moose_cms_data");
+    if (cached) {
+      try {
+        return JSON.parse(cached);
+      } catch (e) {
+        console.error("Cache parsing mismatch", e);
+      }
+    }
+    return INITIAL_CMS_DATA;
+  });
   const [loading, setLoading] = useState<boolean>(true);
 
   // Authentication persistence session state
@@ -27,6 +37,11 @@ export default function App() {
   const [isLogged, setIsLogged] = useState(false);
   const [currentUser, setCurrentUser] = useState<StaffUser | null>(null);
   const [token, setToken] = useState<string>(() => localStorage.getItem("moose_auth_token") || "");
+
+  // Sync state modifications to browser storage for complete serverless/offline persistence
+  useEffect(() => {
+    localStorage.setItem("moose_cms_data", JSON.stringify(cmsData));
+  }, [cmsData]);
 
   // Load state and resolve session login automatically
   useEffect(() => {
