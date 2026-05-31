@@ -2,12 +2,8 @@ import express from "express";
 import path from "path";
 import fs from "fs";
 import crypto from "crypto";
-import { fileURLToPath } from "url";
 import { INITIAL_CMS_DATA } from "./src/initial_data.js";
 import { CMSData } from "./src/types.js";
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 
 const app = express();
 const PORT = 3000;
